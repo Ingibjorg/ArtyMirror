@@ -1,22 +1,16 @@
 {
-  "name": "tracking",
-  "homepage": "http://trackingjs.com",
+  "name": "ArtyMirror",
+  "homepage": "https://github.com/Ingibjorg/ArtyMirror",
   "authors": [
-    "Eduardo Lundgren <edu@rdo.io>"
+    "Luis Flores <me@luisflores.mx>",
+    "Ingibjorg <inga@cool.mx>"
   ],
-  "description": "Augmented Reality JavaScript Framework.",
-  "main": "build/tracking.js",
-  "keywords": [
-    "tracking",
-    "webrtc"
-  ],
-  "license": "BSD",
-  "ignore": [
-    "**/.*",
-    "node_modules"
-  ],
+  "description": "Interactive Mirror",
+  "main": "index.html",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
   "dependencies": {
-    "dat-gui": "0.5.0",
-    "threejs": "r67"
+    "tracking": "tracking.js#~1.1.1"
   }
 }
