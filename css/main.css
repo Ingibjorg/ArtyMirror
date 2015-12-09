@@ -1,15 +1,24 @@
 @font-face {
-    font-family: akkurat-mono;
-    src: url(fonts/Akkurat-Mono.pfb);
+    font-family: 'akkurat-mono';
+    src: url(../fonts/Akkurat-Mono.pfb);
+    src: local('☺'),
+     url('Akkurat-Mono.pfm') format('pfm');
+    font-weight: normal;
+    font-style: normal;
 }
 
 body
 {
     background-color: black;
-    font-family: akkurat-mono;
+    font-family: 'akkurat-mono';
 }
 
 #videoCanvas
 {
   visibility: hidden;
+}
+
+h1
+{
+  color: white;
 }
