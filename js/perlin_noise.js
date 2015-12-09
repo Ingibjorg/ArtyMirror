@@ -1,4 +1,26 @@
 function start(options) {
+    var canvas = document.getElementById('myCanvas'),
+        ctx = canvas.getContext('2d'),
+        offset = 0;
+
+    // resize the canvas to fill browser window dynamically
+    window.addEventListener('resize', resizeCanvas, false);
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        /**
+         * Your drawings need to be inside this function otherwise they will be reset when
+         * you resize the browser window and the canvas goes will be cleared.
+         */
+        drawStuff(canvas, options, ctx, offset);
+    }
+
+    resizeCanvas();
+}
+
+function drawStuff(canvas, options, ctx, offset) {
     var TColor = toxi.color.TColor;
 
     var palette = [
@@ -10,10 +32,6 @@ function start(options) {
         TColor.newHex('891b1b')//.setAlpha(0.85),
         //TColor.newHex('35e8df')
     ];
-
-    var canvas = document.getElementById('myCanvas'),
-        ctx = canvas.getContext('2d'),
-        offset = 0;
 
     var streams = [];
 
