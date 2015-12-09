@@ -139,7 +139,8 @@ function threshold(value) {
     return (value > 0x15) ? 0xFF : 0;
 }
 
-var firstStart = true;
+var fistDetectorStarted = false;
+
 // check if white region from blend overlaps area of interest (e.g. triggers)
 function checkAreas() {
     for (var b = 0; b < buttons.length; b++) {
@@ -157,13 +158,11 @@ function checkAreas() {
         // calculate an average between of the color values of the note area [0-255]
         var average = Math.round(sum / (2 * countPixels));
         if (average > 50) {
-            console.log("Button " + buttons[b].name + " triggered."); // do stuff
-            if (buttons[b].name == "tannbursti" && !firstStart) {
-                // Open tooth brushing game
-                //window.open("fist_test.html", "_self", "toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
-                // messageArea.innerHTML = "<font size='+4' color=" + buttons[b].name + "><b>Button " + buttons[b].name + " triggered.</b></font>";
+            if (buttons[b].name == "tannbursti" && !fistDetectorStarted) {
+                console.log("Button " + buttons[b].name + " triggered."); // do stuff
+                fistDetectorStarted = true;
+                startFistDetection();
             }
         }
     }
-    firstStart = false;
 }

@@ -1,5 +1,5 @@
 function start(options) {
-    var canvas = document.getElementById('myCanvas'),
+    var canvas = document.getElementById('perlinCanvas'),
         ctx = canvas.getContext('2d'),
         offset = 0;
 
@@ -33,13 +33,13 @@ function drawStuff(canvas, options, ctx, offset) {
       //TColor.newHex('FF00E6')//.setAlpha(0.85),
     ];
 
-    var gui = new DAT.GUI();
-    gui.add(options,'numStreams', 1, 4000, 1.0).name("# Streams");
-    gui.add(options,'step',0.25,10,0.25).name("Speed");
-    //var noiseFolder = gui.addFolder("Noise Space Progression");
-    gui.add(options,'distort',-0.5,0.5,0.001).name("Noise Progression");
-    gui.add(options,'strength',0.01,Math.PI*2,0.01).name("Directional Influence");
-    gui.add(options,'scaler',0.01,0.25,0.01).name("Scalar");
+    //var gui = new DAT.GUI();
+    //gui.add(options,'numStreams', 1, 4000, 1.0).name("# Streams");
+    //gui.add(options,'step',0.25,10,0.25).name("Speed");
+    ////var noiseFolder = gui.addFolder("Noise Space Progression");
+    //gui.add(options,'distort',-0.5,0.5,0.001).name("Noise Progression");
+    //gui.add(options,'strength',0.01,Math.PI*2,0.01).name("Directional Influence");
+    //gui.add(options,'scaler',0.01,0.25,0.01).name("Scalar");
 
 
     var streams = [];

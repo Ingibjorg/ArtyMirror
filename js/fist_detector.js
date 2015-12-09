@@ -1,4 +1,4 @@
-$(document).ready(function () {
+function startFistDetection() {
     var options = {
         running: true,
         numStreams: 400,
@@ -52,20 +52,8 @@ $(document).ready(function () {
 
             document.getElementsByTagName('body')[0].appendChild(canvas);
 
-            try {
-                compatibility.getUserMedia({video: true}, function (stream) {
-                    try {
-                        video.src = compatibility.URL.createObjectURL(stream);
-                    } catch (error) {
-                        video.src = stream;
-                    }
-                    compatibility.requestAnimationFrame(play);
-                }, function (error) {
-                    alert("WebRTC not available");
-                });
-            } catch (error) {
-                alert(error);
-            }
+            video.src = camvideo.src;
+            compatibility.requestAnimationFrame(play);
 
             function play() {
                 compatibility.requestAnimationFrame(play);
@@ -126,4 +114,4 @@ $(document).ready(function () {
             }
         }
     );
-});
+}
