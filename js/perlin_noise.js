@@ -30,9 +30,10 @@ function timer() {
   if (count <= 0) {
     console.log("Counting" + count);
      clearInterval(counter);
-     // Do something after 2 minutes
+     // Happens after 2 minutes
      $("#perlinCanvas").hide();
      document.getElementById("succEnding").style.visibility = "visible";
+     document.getElementById("succEnding").style.display = "block";
      return;
   }
 }

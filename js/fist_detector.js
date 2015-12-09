@@ -124,6 +124,7 @@ function startFistDetection() {
                             video.pause();
                             $('canvas').remove();
                             document.getElementById("unsuccEnding").style.visibility = "visible";
+                            document.getElementById("unsuccEnding").style.display = "block";
                         }
                     }
                 }
