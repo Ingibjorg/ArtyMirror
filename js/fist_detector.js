@@ -55,6 +55,8 @@ function startFistDetection() {
             video.src = camvideo.src;
             compatibility.requestAnimationFrame(play);
 
+            var timeSinceLastMovement;
+
             function play() {
                 compatibility.requestAnimationFrame(play);
                 if (video.paused) video.play();
@@ -93,13 +95,14 @@ function startFistDetection() {
                         if (fist_pos_old) {
                             var dx = (fist_pos[0] - fist_pos_old[0]) / video.videoWidth,
                                 dy = (fist_pos[1] - fist_pos_old[1]) / video.videoHeight;
-
-
                         } else fist_pos_old = fist_pos;
 
                         if (options.step + Math.abs(dx) <= 10.0) {
                             options.step += 0.2;
                         }
+
+                        var date = new Date();
+                        timeSinceLastMovement = date.getTime();
 
                         /* Draw coordinates on video overlay: */
                         context.beginPath();
@@ -111,7 +114,16 @@ function startFistDetection() {
                             coord[2] / video.videoWidth * canvas.clientWidth,
                             coord[3] / video.videoHeight * canvas.clientHeight);
                         context.stroke();
-                    } else fist_pos_old = null;
+                    } else {
+                        fist_pos_old = null;
+                        var date = new Date();
+                        var currentTime = date.getTime();
+                        var diff = currentTime - timeSinceLastMovement;
+
+                        if (!isNaN(diff) && diff >= 10000) {
+                            // TODO: Loser
+                        }
+                    }
                 }
             }
         }

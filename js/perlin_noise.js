@@ -109,6 +109,7 @@ function drawStuff(canvas, options, ctx, offset) {
         replaceIndices.forEach(function (streamIndex) {
             streams[streamIndex] = getRandomVector();
         });
+
         setTimeout(draw, 1000 / 30);
     };
 
