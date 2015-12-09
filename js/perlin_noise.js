@@ -24,13 +24,12 @@ function drawStuff(canvas, options, ctx, offset) {
     var TColor = toxi.color.TColor;
 
     var palette = [
-        TColor.newHex('FFFFFF'),
-        TColor.newHex('ECFF35'),//.setBrightness(0.75),
-        TColor.newHex('14E1FF'),
-        TColor.newHex('FF7676'),
-        TColor.newHex('76FFE4'),
-        TColor.newHex('FF00E6')//.setAlpha(0.85),
-        //TColor.newHex('35e8df')
+      TColor.newHex('3C0CFF'),
+      TColor.newHex('9100FD'),//.setBrightness(0.75),
+      TColor.newHex('FF00FF'),
+      //TColor.newHex('FF7676'),
+      //TColor.newHex('76FFE4'),
+      //TColor.newHex('FF00E6')//.setAlpha(0.85),
     ];
 
     var streams = [];
