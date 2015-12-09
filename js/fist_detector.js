@@ -1,10 +1,10 @@
 $(document).ready(function () {
     var options = {
-        numStreams: 500,
+        numStreams: 400,
         distort: 0,
         strength: Math.PI,
         scaler: 0.05,
-        step: 2
+        step: 5
     };
 
     start(options);
@@ -106,14 +106,10 @@ $(document).ready(function () {
                                 dy = (fist_pos[1] - fist_pos_old[1]) / video.videoHeight;
 
                             if (fist_pos[0] < fist_pos_old[0]) {
-                                console.log("Left");
                                 options.strength = Math.PI;
                             } else {
                                 options.strength = Math.PI * 2;
-                                console.log("Right");
                             }
-
-                            console.log(dx + " " + dy);
                         } else fist_pos_old = fist_pos;
 
                         /* Draw coordinates on video overlay: */

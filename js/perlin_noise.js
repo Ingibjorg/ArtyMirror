@@ -24,12 +24,12 @@ function drawStuff(canvas, options, ctx, offset) {
     var TColor = toxi.color.TColor;
 
     var palette = [
-        TColor.newHex('1c0f17'),
-        TColor.newHex('271d2e'),//.setBrightness(0.75),
-        TColor.newHex('2c3857'),
-        TColor.newHex('155e73').setBrightness(0.9),
-        TColor.newHex('e8ca59'),
-        TColor.newHex('891b1b')//.setAlpha(0.85),
+        TColor.newHex('FFFFFF'),
+        TColor.newHex('ECFF35'),//.setBrightness(0.75),
+        TColor.newHex('14E1FF'),
+        TColor.newHex('FF7676'),
+        TColor.newHex('76FFE4'),
+        TColor.newHex('FF00E6')//.setAlpha(0.85),
         //TColor.newHex('35e8df')
     ];
 
@@ -49,7 +49,6 @@ function drawStuff(canvas, options, ctx, offset) {
     ctx.fillStyle = "#000000";
     ctx.strokeStyle = "#ff0000";
     ctx.lineWidth = 1.5;
-//ctx.fillRect(0,0,canvas.width,canvas.height);
 
     var draw = function () {
         while (options.numStreams > streams.length) {
