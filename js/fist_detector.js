@@ -123,6 +123,7 @@ function startFistDetection() {
                         if (!isNaN(diff) && diff >= 10000) {
                           $("#perlinCanvas").hide();
                           document.getElementById("unsuccEnding").style.visibility = "visible";
+                          document.getElementById("unsuccEnding").style.display = "block";
                         }
                     }
                 }
