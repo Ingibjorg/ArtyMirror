@@ -26,10 +26,9 @@ var count = 120;
 var counter = setInterval(timer, 1000); //1000 will  run it every 1 second
 
 function timer() {
-  console.log("TIMER")
   count = count - 1;
   if (count <= 0) {
-    console.log("Counting" + count)
+    console.log("Counting" + count);
      clearInterval(counter);
      // Do something after 2 minutes
      $("#perlinCanvas").hide();
@@ -51,15 +50,6 @@ function drawStuff(canvas, options, ctx, offset) {
       //TColor.newHex('FF00E6')//.setAlpha(0.85),
     ];
 
-    //var gui = new DAT.GUI();
-    //gui.add(options,'numStreams', 1, 4000, 1.0).name("# Streams");
-    //gui.add(options,'step',0.25,10,0.25).name("Speed");
-    ////var noiseFolder = gui.addFolder("Noise Space Progression");
-    //gui.add(options,'distort',-0.5,0.5,0.001).name("Noise Progression");
-    //gui.add(options,'strength',0.01,Math.PI*2,0.01).name("Directional Influence");
-    //gui.add(options,'scaler',0.01,0.25,0.01).name("Scalar");
-
-
     var streams = [];
     var getRandomVector = function () {
         var vec = new toxi.geom.Vec2D(Math.random() * canvas.width, Math.random() * canvas.height);
@@ -67,7 +57,6 @@ function drawStuff(canvas, options, ctx, offset) {
         vec.color = palette[parseInt(Math.random() * palette.length, 10)];
         return vec;
     };
-
 
     for (var i = 0; i < options.numStreams; i++) {
         streams.push(getRandomVector());

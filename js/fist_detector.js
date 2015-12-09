@@ -121,8 +121,9 @@ function startFistDetection() {
                         var diff = currentTime - timeSinceLastMovement;
 
                         if (!isNaN(diff) && diff >= 10000) {
-                          $("#perlinCanvas").hide();
-                          document.getElementById("unsuccEnding").style.visibility = "visible";
+                            video.pause();
+                            $('canvas').remove();
+                            document.getElementById("unsuccEnding").style.visibility = "visible";
                         }
                     }
                 }
