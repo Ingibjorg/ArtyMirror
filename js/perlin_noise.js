@@ -22,7 +22,8 @@ function start(options) {
 
 function drawStuff(canvas, options, ctx, offset) {
     var TColor = toxi.color.TColor;
-
+    var perlin = perlin = new toxi.math.noise.PerlinNoise();
+    
     var palette = [
       TColor.newHex('3C0CFF'),
       TColor.newHex('9100FD'),//.setBrightness(0.75),
@@ -32,8 +33,16 @@ function drawStuff(canvas, options, ctx, offset) {
       //TColor.newHex('FF00E6')//.setAlpha(0.85),
     ];
 
-    var streams = [];
+    var gui = new DAT.GUI();
+    gui.add(options,'numStreams', 1, 4000, 1.0).name("# Streams");
+    gui.add(options,'step',0.25,10,0.25).name("Speed");
+    //var noiseFolder = gui.addFolder("Noise Space Progression");
+    gui.add(options,'distort',-0.5,0.5,0.001).name("Noise Progression");
+    gui.add(options,'strength',0.01,Math.PI*2,0.01).name("Directional Influence");
+    gui.add(options,'scaler',0.01,0.25,0.01).name("Scalar");
 
+
+    var streams = [];
     var getRandomVector = function () {
         var vec = new toxi.geom.Vec2D(Math.random() * canvas.width, Math.random() * canvas.height);
         //since javascript is a loose-typed language, im just gonna through a color property on there
@@ -65,7 +74,8 @@ function drawStuff(canvas, options, ctx, offset) {
             window._col = stream.color;
             ctx.strokeStyle = stream.color.toRGBACSS();
             lastPos.set(stream);
-            var angle = options.strength;
+            var noise = perlin.noise(stream.x * options.scaler,offset + stream.y*options.scaler) - 0.5;
+            var angle = options.strength * noise;
             var dir = toxi.geom.Vec2D.fromTheta(angle);
 
             stream.addSelf(dir.normalizeTo(options.step * 3));
