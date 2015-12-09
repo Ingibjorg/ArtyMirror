@@ -33,7 +33,7 @@ function timer() {
      clearInterval(counter);
      // Do something after 2 minutes
      $("#perlinCanvas").hide();
-     $("#winner").fadeIn();
+     document.getElementById("ending").style.visibility = "visible";
      return;
   }
 }
