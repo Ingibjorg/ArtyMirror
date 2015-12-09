@@ -1,15 +1,7 @@
 function start(options) {
     var canvas = document.getElementById('myCanvas'),
         ctx = canvas.getContext('2d'),
-        perlin = new toxi.math.noise.PerlinNoise(),
-        offset = 0,
-        options = {
-            numStreams: 500,
-            distort: 0,
-            strength:  Math.PI,
-            scaler: 0.05,
-            step: 2
-        };
+        offset = 0;
 
     // resize the canvas to fill browser window dynamically
     window.addEventListener('resize', resizeCanvas, false);
