@@ -1,10 +1,11 @@
 $(document).ready(function () {
     var options = {
+        running: true,
         numStreams: 400,
         distort: 0,
-        strength: Math.PI,
-        scaler: 0.05,
-        step: 5
+        strength:  Math.PI,
+        scalar: 0.05,
+        step: 2
     };
 
     start(options);
@@ -106,9 +107,9 @@ $(document).ready(function () {
                                 dy = (fist_pos[1] - fist_pos_old[1]) / video.videoHeight;
 
                             if (fist_pos[0] < fist_pos_old[0]) {
-                                options.strength = Math.PI;
+                                //options.strength = Math.PI;
                             } else {
-                                options.strength = Math.PI * 2;
+                                //options.strength = Math.PI * 2;
                             }
                         } else fist_pos_old = fist_pos;
 
