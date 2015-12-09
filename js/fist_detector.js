@@ -120,7 +120,7 @@ function startFistDetection() {
                         var currentTime = date.getTime();
                         var diff = currentTime - timeSinceLastMovement;
 
-                        if (!isNaN(diff) && diff >= 10000) {
+                        if (!isNaN(diff) && diff >= 7000) {
                             video.pause();
                             $('canvas').remove();
                             document.getElementById("unsuccEnding").style.visibility = "visible";
