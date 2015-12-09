@@ -1,6 +1,12 @@
+@font-face {
+    font-family: akkurat-mono;
+    src: url(fonts/Akkurat-Mono.pfb);
+}
+
 body
 {
     background-color: black;
+    font-family: akkurat-mono;
 }
 
 #videoCanvas
