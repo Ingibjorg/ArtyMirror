@@ -98,7 +98,7 @@ function startFistDetection() {
                         } else fist_pos_old = fist_pos;
 
                         if (options.step + Math.abs(dx) <= 10.0) {
-                            options.step += 0.1;
+                            options.step += 0.2;
                         }
 
                         /* Draw coordinates on video overlay: */

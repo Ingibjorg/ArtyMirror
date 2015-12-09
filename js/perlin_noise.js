@@ -116,7 +116,7 @@ function drawStuff(canvas, options, ctx, offset) {
 
     function decreaseSpeed( ) {
         if (options.step >= 0.25) {
-            options.step -= 0.05;
+            options.step -= 0.1;
         }
     }
 
