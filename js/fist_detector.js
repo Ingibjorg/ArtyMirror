@@ -3,7 +3,7 @@ function startFistDetection() {
         running: true,
         numStreams: 400,
         distort: 0,
-        strength:  Math.PI,
+        strength: Math.PI,
         scaler: 0.05,
         step: 2
     };
@@ -93,11 +93,13 @@ function startFistDetection() {
                         if (fist_pos_old) {
                             var dx = (fist_pos[0] - fist_pos_old[0]) / video.videoWidth,
                                 dy = (fist_pos[1] - fist_pos_old[1]) / video.videoHeight;
-                            dx *= -1.0;
-                            if (options.step + dx <= 10 && options.step + dx >= 0) {
-                                options.step += dx;
-                            }
+
+
                         } else fist_pos_old = fist_pos;
+
+                        if (options.step + Math.abs(dx) <= 10.0) {
+                            options.step += 0.1;
+                        }
 
                         /* Draw coordinates on video overlay: */
                         context.beginPath();

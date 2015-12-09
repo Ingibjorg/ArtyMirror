@@ -111,4 +111,12 @@ function drawStuff(canvas, options, ctx, offset) {
     };
 
     setTimeout(draw, 1000 / 30);
+
+    function decreaseSpeed( ) {
+        if (options.step >= 0.25) {
+            options.step -= 0.05;
+        }
+    }
+
+    setInterval(decreaseSpeed, 1000 / 30);
 }
