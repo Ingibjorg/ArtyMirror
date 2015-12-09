@@ -161,6 +161,7 @@ function checkAreas() {
             if (buttons[b].name == "tannbursti" && !fistDetectorStarted) {
                 console.log("Button " + buttons[b].name + " triggered."); // do stuff
                 fistDetectorStarted = true;
+                $("#layer2").hide();
                 startFistDetection();
             }
         }
