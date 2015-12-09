@@ -1,4 +1,14 @@
 $(document).ready(function () {
+    var options = {
+        numStreams: 500,
+        distort: 0,
+        strength: Math.PI,
+        scaler: 0.05,
+        step: 2
+    };
+
+    start(options);
+
     function getScripts(urls, callback) {
         function getScript(url, callback) {
             var script = document.createElement('script'),
@@ -6,7 +16,7 @@ $(document).ready(function () {
                 done = false;
 
             script.src = url;
-            script.onload = script.onreadystatechange = function() {
+            script.onload = script.onreadystatechange = function () {
                 if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
                     done = true;
                     callback();
@@ -32,7 +42,7 @@ $(document).ready(function () {
             '//mtschirs.github.io/js-objectdetect/js/objectdetect.handfist.js',
             '//mtschirs.github.io/js-objectdetect/examples/js/jquery.js'],
 
-        function() {
+        function () {
             var canvas = $('<canvas style="position: fixed; z-index: 1001;top: 10px; right: 10px; opacity: 0.9">').get(0),
                 context = canvas.getContext('2d'),
                 video = document.createElement('video'),
@@ -42,7 +52,7 @@ $(document).ready(function () {
             document.getElementsByTagName('body')[0].appendChild(canvas);
 
             try {
-                compatibility.getUserMedia({video: true}, function(stream) {
+                compatibility.getUserMedia({video: true}, function (stream) {
                     try {
                         video.src = compatibility.URL.createObjectURL(stream);
                     } catch (error) {
@@ -94,6 +104,14 @@ $(document).ready(function () {
                         if (fist_pos_old) {
                             var dx = (fist_pos[0] - fist_pos_old[0]) / video.videoWidth,
                                 dy = (fist_pos[1] - fist_pos_old[1]) / video.videoHeight;
+
+                            if (fist_pos[0] < fist_pos_old[0]) {
+                                console.log("Left");
+                                options.strength = Math.PI;
+                            } else {
+                                options.strength = Math.PI * 2;
+                                console.log("Right");
+                            }
 
                             console.log(dx + " " + dy);
                         } else fist_pos_old = fist_pos;
