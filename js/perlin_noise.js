@@ -18,12 +18,28 @@ function start(options) {
     }
 
     resizeCanvas();
+    timer();
+}
+
+// Counter for 2 minute tooth brushing
+var count = 120;
+var counter = setInterval(timer, 1000); //1000 will  run it every 1 second
+
+function timer() {
+  console.log("TIMER")
+  count = count - 1;
+  if (count <= 0) {
+    console.log("Counting" + count)
+     clearInterval(counter);
+     // Do something after 2 minutes
+     return;
+  }
 }
 
 function drawStuff(canvas, options, ctx, offset) {
     var TColor = toxi.color.TColor;
     var perlin = perlin = new toxi.math.noise.PerlinNoise();
-    
+
     var palette = [
       TColor.newHex('3C0CFF'),
       TColor.newHex('9100FD'),//.setBrightness(0.75),
