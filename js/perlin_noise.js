@@ -32,6 +32,8 @@ function timer() {
     console.log("Counting" + count)
      clearInterval(counter);
      // Do something after 2 minutes
+     $("#perlinCanvas").hide();
+     $("#winner").fadeIn();
      return;
   }
 }
