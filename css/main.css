@@ -19,6 +19,9 @@ body {
 p
 {
   color: white;
+  font-size: 150%;
+  padding-left: 120px;
+  padding-top: 50px;
 }
 
 * {
