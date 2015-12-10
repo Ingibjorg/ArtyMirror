@@ -122,9 +122,12 @@ function startFistDetection() {
 
                         if (!isNaN(diff) && diff >= 5000) {
                             video.pause();
-                            $('canvas').remove();
+                            $('canvas').hide();
                             document.getElementById("unsuccEnding").style.visibility = "visible";
                             document.getElementById("unsuccEnding").style.display = "block";
+                            $("#layer2").show();
+                            document.getElementById("finish").style.visibility = "visible";
+                            document.getElementById("finish").style.display = "block";
                         }
                     }
                 }
