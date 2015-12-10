@@ -2,23 +2,36 @@
     font-family: 'akkurat-mono';
     src: url(../fonts/Akkurat-Mono.pfb);
     src: local('☺'),
-     url('Akkurat-Mono.pfm') format('pfm');
+    url('Akkurat-Mono.pfm') format('pfm');
     font-weight: normal;
     font-style: normal;
 }
 
-body
-{
+body {
     background-color: black;
     font-family: 'akkurat-mono';
 }
 
-#videoCanvas
-{
-  visibility: hidden;
+#videoCanvas {
+    visibility: hidden;
 }
 
-h1
-{
-  color: white;
+h1 {
+    color: white;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.fit { /* set relative picture size */
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.center {
+    display: block;
+    margin: auto;
+    padding-left: 150px;
 }
