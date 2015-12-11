@@ -8,6 +8,15 @@ function startFistDetection() {
         step: 2
     };
 
+    $("#perlinCanvas").show();
+    document.getElementById("unsuccEnding").style.visibility = "hidden";
+    document.getElementById("unsuccEnding").style.display = "none";
+    $("#layer2").hide();
+    document.getElementById("finish").style.visibility = "hidden";
+    document.getElementById("finish").style.display = "none";
+
+    var paused = false;
+
     start(options);
 
     function getScripts(urls, callback) {
@@ -55,14 +64,14 @@ function startFistDetection() {
             video.src = camvideo.src;
             compatibility.requestAnimationFrame(play);
 
-            var timeSinceLastMovement;
+            var date = new Date();
+            var timeSinceLastMovement = date.getTime();
 
             function play() {
                 compatibility.requestAnimationFrame(play);
                 if (video.paused) video.play();
 
                 if (video.readyState === video.HAVE_ENOUGH_DATA && video.videoWidth > 0) {
-
                     /* Prepare the detector once the video dimensions are known: */
                     if (!detector) {
                         var width = ~~(80 * video.videoWidth / video.videoHeight);
@@ -101,7 +110,7 @@ function startFistDetection() {
                             options.step += 0.2;
                         }
 
-                        var date = new Date();
+                        date = new Date();
                         timeSinceLastMovement = date.getTime();
 
                         /* Draw coordinates on video overlay: */
@@ -120,15 +129,18 @@ function startFistDetection() {
                         var currentTime = date.getTime();
                         var diff = currentTime - timeSinceLastMovement;
 
-                        if (!isNaN(diff) && diff >= 5000) {
+                        if (!isNaN(diff) && diff >= 4000 && !paused) {
+                            paused = true;
                             clearInterval(counter);
                             video.pause();
-                            $('canvas').hide();
+                            $("canvas").hide();
                             document.getElementById("unsuccEnding").style.visibility = "visible";
                             document.getElementById("unsuccEnding").style.display = "block";
                             $("#layer2").show();
                             document.getElementById("finish").style.visibility = "visible";
                             document.getElementById("finish").style.display = "block";
+                            fistDetectorStarted = false;
+                            animate();
                         }
                     }
                 }
