@@ -1,4 +1,9 @@
+// Counter for 2 minute tooth brushing
+var count = 20;
+var counter;
+
 function start(options) {
+    counter = setInterval(timer, 1000); //1000 will  run it every 1 second
     var canvas = document.getElementById('perlinCanvas'),
         ctx = canvas.getContext('2d'),
         offset = 0;
@@ -21,21 +26,15 @@ function start(options) {
     timer();
 }
 
-// Counter for 2 minute tooth brushing
-var count = 120;
-var counter = setInterval(timer, 1000); //1000 will  run it every 1 second
-
 function timer() {
-  count = count - 1;
-  if (count <= 0) {
-    console.log("Counting" + count);
-     clearInterval(counter);
-     // Happens after 2 minutes
-     $("#perlinCanvas").hide();
-     document.getElementById("succEnding").style.visibility = "visible";
-     document.getElementById("succEnding").style.display = "block";
-     return;
-  }
+    count = count - 1;
+    if (count <= 0) {
+        clearInterval(counter);
+        // Happens after 2 minutes
+        $("#perlinCanvas").hide();
+        document.getElementById("succEnding").style.visibility = "visible";
+        document.getElementById("succEnding").style.display = "block";
+    }
 }
 
 function drawStuff(canvas, options, ctx, offset) {
@@ -43,12 +42,12 @@ function drawStuff(canvas, options, ctx, offset) {
     var perlin = perlin = new toxi.math.noise.PerlinNoise();
 
     var palette = [
-      TColor.newHex('3C0CFF'),
-      TColor.newHex('9100FD'),//.setBrightness(0.75),
-      TColor.newHex('FF00FF'),
-      //TColor.newHex('FF7676'),
-      //TColor.newHex('76FFE4'),
-      //TColor.newHex('FF00E6')//.setAlpha(0.85),
+        TColor.newHex('3C0CFF'),
+        TColor.newHex('9100FD'),//.setBrightness(0.75),
+        TColor.newHex('FF00FF'),
+        //TColor.newHex('FF7676'),
+        //TColor.newHex('76FFE4'),
+        //TColor.newHex('FF00E6')//.setAlpha(0.85),
     ];
 
     var streams = [];
@@ -82,7 +81,7 @@ function drawStuff(canvas, options, ctx, offset) {
             window._col = stream.color;
             ctx.strokeStyle = stream.color.toRGBACSS();
             lastPos.set(stream);
-            var noise = perlin.noise(stream.x * options.scaler,offset + stream.y*options.scaler) - 0.5;
+            var noise = perlin.noise(stream.x * options.scaler, offset + stream.y * options.scaler) - 0.5;
             var angle = options.strength * noise;
             var dir = toxi.geom.Vec2D.fromTheta(angle);
 
@@ -105,7 +104,7 @@ function drawStuff(canvas, options, ctx, offset) {
 
     setTimeout(draw, 1000 / 30);
 
-    function decreaseSpeed( ) {
+    function decreaseSpeed() {
         if (options.step >= 0.25) {
             options.step -= 0.1;
         }
