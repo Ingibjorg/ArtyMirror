@@ -75,7 +75,6 @@ function startFistDetection() {
                     var coords = detector.detect(video, 1);
                     if (coords[0]) {
                         var coord = coords[0];
-
                         /* Rescale coordinates from detector to video coordinate space: */
                         coord[0] *= video.videoWidth / detector.canvas.width;
                         coord[1] *= video.videoHeight / detector.canvas.height;
@@ -98,17 +97,12 @@ function startFistDetection() {
                             coord[3] / video.videoHeight * canvas.clientHeight);
                         context.stroke();
 
-                        /* Rescale coordinates from detector to canvas coordinate space: */
-                        coord[0] = coord[0] / video.videoWidth * fluidCanvas.clientWidth;
-                        coord[1] = coord[1] / video.videoHeight * fluidCanvas.clientHeight;
-                        coord[2] = coord[2] / video.videoWidth * fluidCanvas.clientWidth;
-                        coord[3] = coord[3] / video.videoHeight * fluidCanvas.clientHeight;
-
-                        var x = (coord[0] + coord[0] + coord[2]) / 2;
-                        var y = (coord[2] + coord[2] + coord[3]) / 2;
+                        var x = coord[0] / video.videoWidth * fluidCanvas.clientWidth;
+                        var y = coord[1] / video.videoHeight * fluidCanvas.clientHeight;
 
                         mouse.set(x,y);
                         mouseFluid.set((x / fluidCanvas.width * 2 - 1) * fluid.aspectRatio,(fluidCanvas.height - y) / fluidCanvas.height * 2 - 1);
+                        mousePointKnown = true;
                     } else {
                         var date = new Date();
                         var currentTime = date.getTime();

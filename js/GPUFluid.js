@@ -1,6 +1,8 @@
 var mouseFluid;
 var fluid;
 var mouse;
+var lastMouse;
+var mousePointKnown;
 (function (console, $global) { "use strict";
 var $hxClasses = {},$estr = function() { return js_Boot.__string_rec(this,''); };
 function $extend(from, fields) {
@@ -971,12 +973,12 @@ var Main = function() {
 	this.renderFluidEnabled = true;
 	this.renderParticlesEnabled = true;
 	this.lastMouseFluid = new shaderblox_uniforms_Vector2();
-	this.lastMouse = new shaderblox_uniforms_Vector2();
+	lastMouse = new shaderblox_uniforms_Vector2();
 	mouseFluid = new shaderblox_uniforms_Vector2();
 	mouse = new shaderblox_uniforms_Vector2();
 	this.lastMousePointKnown = false;
-	this.mousePointKnown = false;
-	this.isMouseDown = false;
+	mousePointKnown = false;
+	this.isMouseDown = true;
 	this.screenBuffer = null;
 	this.textureQuad = null;
 	this.gl = snow_modules_opengl_web_GL;
@@ -1054,9 +1056,9 @@ Main.prototype = $extend(snow_App.prototype,{
 		fluid.step(dt);
 		this.particles.stepParticlesShader.flowVelocityField.set_data(fluid.velocityRenderTarget.readFromTexture);
 		if(this.renderParticlesEnabled) this.particles.step(dt);
-		this.lastMouse.set(mouse.x,mouse.y);
+		lastMouse.set(mouse.x,mouse.y);
 		this.lastMouseFluid.set((mouse.x / this.window.width * 2 - 1) * fluid.aspectRatio,(this.window.height - mouse.y) / this.window.height * 2 - 1);
-		this.lastMousePointKnown = this.mousePointKnown;
+		this.lastMousePointKnown = mousePointKnown;
 	}
 	,render: function(w) {
 		snow_modules_opengl_web_GL.current_context.viewport(0,0,this.window.width,this.window.height);
@@ -1199,20 +1201,19 @@ Main.prototype = $extend(snow_App.prototype,{
 		this.isMouseDown = true;
 	}
 	,onmouseup: function(x,y,button,_,_1) {
-		this.isMouseDown = false;
+		this.isMouseDown = true;
 	}
 	,onmousemove: function(x,y,xrel,yrel,_,_1) {
 		this.isMouseDown = true;
-		//console.log(x + " = " + y);
+		console.log(x + " = " + y);
 		mouse.set(x,y);
 		mouseFluid.set((x / this.window.width * 2 - 1) * fluid.aspectRatio,(this.window.height - y) / this.window.height * 2 - 1);
-		console.log(this.window.width + " = " + this.window.height);
-		this.mousePointKnown = true;
+		mousePointKnown = true;
 	}
 	,updateLastMouse: function() {
-		this.lastMouse.set(this.mouse.x,this.mouse.y);
+		lastMouse.set(this.mouse.x,this.mouse.y);
 		this.lastMouseFluid.set((this.mouse.x / this.window.width * 2 - 1) * fluid.aspectRatio,(this.window.height - this.mouse.y) / this.window.height * 2 - 1);
-		this.lastMousePointKnown = this.mousePointKnown;
+		this.lastMousePointKnown = mousePointKnown;
 	}
 	,onkeydown: function(keyCode,_,_1,_2,_3,_4) {
 		switch(keyCode) {
