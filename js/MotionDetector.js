@@ -67,16 +67,6 @@ button1.src = "images/tannbursti.png";
 var buttonData1 = {name: "tannbursti", image: button1, x: 320 - 120 - 200, y: 10, w: 100, h: 100};
 buttons.push(buttonData1);
 
-/*var button2 = new Image();
- button2.src ="images/SquareGreen.png";
- var buttonData2 = { name:"green", image:button2, x:320 - 64 - 20, y:10, w:32, h:32 };
- buttons.push(buttonData2);
-
- var button3 = new Image();
- button3.src ="images/SquareBlue.png";
- var buttonData3 = { name:"blue", image:button3, x:320 - 32 - 10, y:10, w:32, h:32 };
- buttons.push( buttonData3 ); */
-
 function animate() {
     requestAnimationFrame(animate);
     render();
@@ -139,6 +129,7 @@ function threshold(value) {
     return (value > 0x15) ? 0xFF : 0;
 }
 
+var time = 30;
 var count = 0;
 var counter = setInterval(timer, 1000); //1000 will  run it every 1 second
 
@@ -149,7 +140,7 @@ $(function() {
       'configure',
       {
         "min":0,
-        "max":30,
+        "max":time,
         "fgColor":"#FFFFFF",
         "bgColor":"#000000",
         "displayInput":false,
@@ -166,7 +157,7 @@ function timer() {
     count = count + 0.5;
     timeStarted = false;
   }
-  if (count <= 10 && count >= 0.5) {
+  if (count <= time && count >= 0.5) {
     console.log("Counting" + count);
      // Happens after 30 seconds
      $('.dial')
@@ -177,7 +168,7 @@ function timer() {
     return;
   }
 
-  if(count > 10){
+  if(count > time){
     console.log("Clearing interval with count: " + count);
     clearInterval(counter);
     counter = null;
