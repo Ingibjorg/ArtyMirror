@@ -118,6 +118,7 @@ function startFistDetection() {
                             document.getElementById("unsuccEnding").style.visibility = "visible";
                             document.getElementById("unsuccEnding").style.display = "block";
                             $("#layer2").show();
+                            $("#brush-wave").show();
                             document.getElementById("finish").style.visibility = "visible";
                             document.getElementById("finish").style.display = "block";
                             fistDetectorStarted = false;
