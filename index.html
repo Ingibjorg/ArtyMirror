@@ -7,6 +7,7 @@
     <title>ArtyMirror</title>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
+    <script src="bower_components/progressbar.js/dist/progressbar.min.js"></script>
 </head>
 <body>
 <video id="monitor" autoplay style="display: none; width: 320px; height: 240px;"></video>
@@ -19,16 +20,15 @@
     <p id="finish" style="display:none; visibility:hidden;">Finish</p>
 </div>
 <canvas id="blendCanvas" style="display: none; position: relative; left: 320px; top: 240px; width: 320px; height: 240px;"></canvas>
-<div id="timer">
-  <input class="dial" value="0"></input>
-</div>
+
+<div class="progress" id="progress"></div>
 
 <img id="succEnding" class="center fit" src="images/glodtonn.gif" alt="winner" style="display:none; visibility:hidden;"/>
 <img id="unsuccEnding" class="center fit"  src="images/leidtonn.gif" alt="looser" style="display:none; visibility:hidden;"/>
 
 <script src="js/RequestAnimationFrame.js"></script>
 <script src="js/howler.js"></script>
-<script src="js/motiondetector.js"></script>
+<script src="js/MotionDetector.js"></script>
 <script src="js/fistdetector.js"></script>
 <script type="text/javascript" language="JavaScript">
     function set_body_height() { // set body height = window height

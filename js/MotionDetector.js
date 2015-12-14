@@ -82,7 +82,7 @@ function animate() {
     render();
     blend();
 
-    setTimeout(function (){
+    setTimeout(function () {
         checkAreas();
     }, 1000);
 }
@@ -139,56 +139,29 @@ function threshold(value) {
     return (value > 0x15) ? 0xFF : 0;
 }
 
-var count = 0;
-var counter = setInterval(timer, 1000); //1000 will  run it every 1 second
 
-$(function() {
-    $(".dial").knob();
+var counter;
+var time = 10000; // 30 seconds, 30000 milliseconds
 
-    $('.dial').trigger(
-      'configure',
-      {
-        "min":0,
-        "max":30,
-        "fgColor":"#FFFFFF",
-        "bgColor":"#000000",
-        "displayInput":false,
-        "width": 100,
-        "height": 100
-      }
+$(function () {
+    var dial = $(".dial");
+    dial.knob();
+    dial.trigger(
+        'configure',
+        {
+            "min": 0,
+            "max": 100,
+            "fgColor": "#FFFFFF",
+            "bgColor": "#000000",
+            "displayInput": false,
+            "width": 100,
+            "height": 100
+        }
     );
 });
 
-function timer() {
-  console.log("TIMER");
-  if(timeStarted){
-    console.log("Counting" + count);
-    count = count + 0.5;
-    timeStarted = false;
-  }
-  if (count <= 10 && count >= 0.5) {
-    console.log("Counting" + count);
-     // Happens after 30 seconds
-     $('.dial')
-       .val(count)
-       .trigger('change');
-
-    count = count + 0.5;
-    return;
-  }
-
-  if(count > 10){
-    console.log("Clearing interval with count: " + count);
-    clearInterval(counter);
-    counter = null;
-    $("canvas").hide();
-    document.getElementById("succEnding").style.visibility = "visible";
-    document.getElementById("succEnding").style.display = "block";
-  }
-}
-
 var fistDetectorStarted = false;
-var timeStarted = false;
+var circle;
 
 // check if white region from blend overlaps area of interest (e.g. triggers)
 function checkAreas() {
@@ -213,11 +186,24 @@ function checkAreas() {
 
                 $.getScript("js/GPUFluid.js", null);
                 startFistDetection();
-                console.log("starting timer");
-                //document.getElementById(".timer").style.visibility = "visible";
-                //document.getElementById(".timer").style.display = "block";
-                timeStarted = true;
-                timer();
+
+                if (!circle) {
+                    $("#progress").show();
+                    circle = new ProgressBar.Circle('#progress', {
+                        strokeWidth: 3,
+                        color: '#FFFFFF',
+                        duration: 5000,
+                        easing: 'easeInOut'
+                    });
+                }
+
+                circle.animate(1, function() {
+                    $("#progress").hide();
+                    $("canvas").hide();
+                    document.getElementById("succEnding").style.visibility = "visible";
+                    document.getElementById("succEnding").style.display = "block";
+                    circle = null;
+                });
             }
         }
     }

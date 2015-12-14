@@ -6,6 +6,7 @@ function startFistDetection() {
     document.getElementById("finish").style.display = "none";
 
     var paused = false;
+
     function getScripts(urls, callback) {
         function getScript(url, callback) {
             var script = document.createElement('script'),
@@ -107,8 +108,8 @@ function startFistDetection() {
                         var x = (coord[0] + coord[0] + coord[2]) / 2;
                         var y = (coord[2] + coord[2] + coord[3]) / 2;
 
-                        mouse.set(x,y);
-                        mouseFluid.set((x / fluidCanvas.width * 2 - 1) * fluid.aspectRatio,(fluidCanvas.height - y) / fluidCanvas.height * 2 - 1);
+                        mouse.set(x, y);
+                        mouseFluid.set((x / fluidCanvas.width * 2 - 1) * fluid.aspectRatio, (fluidCanvas.height - y) / fluidCanvas.height * 2 - 1);
                         date = new Date();
                         timeSinceLastMovement = date.getTime();
                     } else {
@@ -117,22 +118,18 @@ function startFistDetection() {
                         var diff = currentTime - timeSinceLastMovement;
 
                         if (!isNaN(diff) && diff >= 4000 && !paused) {
-                            console.log("Stopping");
                             paused = true;
-                            console.log("Counter: ", counter);
-                            if(counter != null) {
-                              console.log("Clearing counter interval fist: ", counter);
-                              clearInterval(counter);
-                              video.pause();
-                              $("canvas").hide();
-                              document.getElementById("unsuccEnding").style.visibility = "visible";
-                              document.getElementById("unsuccEnding").style.display = "block";
-                              $("#layer2").show();
-                              document.getElementById("finish").style.visibility = "visible";
-                              document.getElementById("finish").style.display = "block";
-                              fistDetectorStarted = false;
-                              animate();
-                            }
+                            clearInterval(counter);
+                            video.pause();
+                            $("canvas").hide();
+                            document.getElementById("unsuccEnding").style.visibility = "visible";
+                            document.getElementById("unsuccEnding").style.display = "block";
+                            $("#layer2").show();
+                            document.getElementById("finish").style.visibility = "visible";
+                            document.getElementById("finish").style.display = "block";
+                            fistDetectorStarted = false;
+                            animate();
+                            circle.stop();
                         }
                     }
                 }

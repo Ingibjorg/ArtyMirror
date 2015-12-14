@@ -40,9 +40,14 @@ p
     padding-left: 150px;
 }
 
-#timer {
-  position: absolute;
-  padding: 20px;
-  margin: 20px;
-  z-index: 200;
+.progress {
+    position: absolute;
+    height: 100px;
+    z-index: 100;
+    margin: 10px;
+}
+
+.progress > svg {
+    height: 100%;
+    display: block;
 }
