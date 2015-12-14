@@ -7,6 +7,16 @@
     font-style: normal;
 }
 
+p {
+  color: white;
+  font-size: 250%;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
 body {
     background-color: #121212;
     font-family: 'akkurat-mono';
@@ -16,43 +26,39 @@ body {
     visibility: hidden;
 }
 
-#brush-wave{
+#brush-wave {
   height:300px;
   width:300px;
   position: absolute;
 }
 
 #day {
+  top: 50px;
   color: white;
   position: absolute;
-  right: 0px;
+  right: 145px;
 }
 
 #date {
   color: white;
   position: absolute;
-  right: 0px;
-  top: 20px;
+  right: 70px;
+  top: 95px;
+  border-style: solid;
+  padding: 15px 10px;
 }
 
 #clock {
   color: white;
   position: absolute;
-  right: 0px;
-  top: 40px;
+  right: 70px;
+  top: 190px;
+  font-size: 300%;
 }
 
-p
-{
-  color: white;
-  font-size: 150%;
+#finish {
   padding-left: 120px;
   padding-top: 50px;
-}
-
-* {
-    padding: 0;
-    margin: 0;
 }
 
 .fit { /* set relative picture size */
