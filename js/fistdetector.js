@@ -100,7 +100,7 @@ function startFistDetection() {
 
                         var x = coord[0] / video.videoWidth * fluidCanvas.clientWidth;
                         var y = coord[1] / video.videoHeight * fluidCanvas.clientHeight;
-                        
+
                         mouse.set(x,y);
                         mouseFluid.set((x / fluidCanvas.width * 2 - 1) * fluid.aspectRatio,(fluidCanvas.height - y) / fluidCanvas.height * 2 - 1);
                         mousePointKnown = true;

@@ -161,7 +161,7 @@ function checkAreas() {
                     circle = new ProgressBar.Circle('#progress', {
                         strokeWidth: 3,
                         color: '#FFFFFF',
-                        duration: 5000,
+                        duration: 30000,
                         easing: 'easeInOut'
                     });
                 }
