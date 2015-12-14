@@ -156,7 +156,7 @@ function checkAreas() {
                 if (!circle) {
                     $("#progress").show();
                     circle = new ProgressBar.Circle('#progress', {
-                        strokeWidth: 3,
+                        strokeWidth: 15,
                         color: '#FFFFFF',
                         duration: 30000,
                         easing: 'easeInOut'
