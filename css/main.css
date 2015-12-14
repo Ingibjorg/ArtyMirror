@@ -32,6 +32,19 @@ body {
   position: absolute;
 }
 
+#instructions-text {
+  padding-left: 350px;
+  padding-top: 100px;
+  font-size: 200%;
+}
+
+#finish-text {
+  visibility: hidden;
+  padding-left: 350px;
+  padding-top: 100px;
+  font-size: 200%;
+}
+
 #day {
   top: 50px;
   color: white;

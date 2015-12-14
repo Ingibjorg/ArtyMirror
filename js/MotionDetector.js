@@ -149,7 +149,7 @@ function checkAreas() {
             if (buttons[b].name == "tannbursti" && !fistDetectorStarted) {
                 fistDetectorStarted = true;
                 $("#layer2").hide();
-                $("#brush-wave").hide();
+                $("#instructions").hide();
 
                 $.getScript("js/GPUFluid.js", null);
                 startFistDetection();

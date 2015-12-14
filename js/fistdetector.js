@@ -118,9 +118,11 @@ function startFistDetection() {
                             document.getElementById("unsuccEnding").style.visibility = "visible";
                             document.getElementById("unsuccEnding").style.display = "block";
                             $("#layer2").show();
-                            $("#brush-wave").show();
-                            document.getElementById("finish").style.visibility = "visible";
-                            document.getElementById("finish").style.display = "block";
+                            $("#instructions").show();
+                            document.getElementById("instructions-text").style.visibility = "hidden";
+                            document.getElementById("instructions-text").style.display = "none";
+                            document.getElementById("finish-text").style.visibility = "visible";
+                            document.getElementById("finish-text").style.display = "block";
                             fistDetectorStarted = false;
                             animate();
                             circle.stop();
