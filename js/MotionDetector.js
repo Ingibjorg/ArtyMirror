@@ -63,8 +63,8 @@ videoContext.fillRect(0, 0, videoCanvas.width, videoCanvas.height);
 var buttons = [];
 
 var button1 = new Image();
-button1.src = "images/tannbursti.png";
-var buttonData1 = {name: "tannbursti", image: button1, x: 320 - 120 - 200, y: 10, w: 100, h: 100};
+button1.src = "images/wave_gif.gif";
+var buttonData1 = {name: "tannbursti", image: button1, x: 320 - 120 - 200, y: 10, w: 300, h: 300};
 buttons.push(buttonData1);
 
 function animate() {
@@ -81,9 +81,6 @@ function render() {
     if (video.readyState === video.HAVE_ENOUGH_DATA) {
         // mirror video
         videoContext.drawImage(video, 0, 0, videoCanvas.width, videoCanvas.height);
-        for (var i = 0; i < buttons.length; i++) {
-            layer2Context.drawImage(buttons[i].image, buttons[i].x, buttons[i].y, buttons[i].w, buttons[i].h);
-        }
     }
 }
 

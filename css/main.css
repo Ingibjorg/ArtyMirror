@@ -16,6 +16,12 @@ body {
     visibility: hidden;
 }
 
+#brush-wave{
+  height:300px;
+  width:300px;
+  position: absolute;
+}
+
 p
 {
   color: white;
