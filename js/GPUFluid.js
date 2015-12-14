@@ -1,3 +1,6 @@
+var mouseFluid;
+var fluid;
+var mouse;
 (function (console, $global) { "use strict";
 var $hxClasses = {},$estr = function() { return js_Boot.__string_rec(this,''); };
 function $extend(from, fields) {
@@ -958,6 +961,9 @@ snow_App.prototype = {
 	}
 	,__class__: snow_App
 };
+
+
+
 var Main = function() {
 	this.rshiftDown = false;
 	this.lshiftDown = false;
@@ -966,8 +972,8 @@ var Main = function() {
 	this.renderParticlesEnabled = true;
 	this.lastMouseFluid = new shaderblox_uniforms_Vector2();
 	this.lastMouse = new shaderblox_uniforms_Vector2();
-	this.mouseFluid = new shaderblox_uniforms_Vector2();
-	this.mouse = new shaderblox_uniforms_Vector2();
+	mouseFluid = new shaderblox_uniforms_Vector2();
+	mouse = new shaderblox_uniforms_Vector2();
 	this.lastMousePointKnown = false;
 	this.mousePointKnown = false;
 	this.isMouseDown = false;
@@ -1027,17 +1033,17 @@ Main.prototype = $extend(snow_App.prototype,{
 		this.renderParticlesShader = new ColorParticleMotion();
 		this.updateDyeShader = new MouseDye();
 		this.mouseForceShader = new MouseForce();
-		this.updateDyeShader.mouse.set_data(this.mouseFluid);
+		this.updateDyeShader.mouse.set_data(mouseFluid);
 		this.updateDyeShader.lastMouse.set_data(this.lastMouseFluid);
-		this.mouseForceShader.mouse.set_data(this.mouseFluid);
+		this.mouseForceShader.mouse.set_data(mouseFluid);
 		this.mouseForceShader.lastMouse.set_data(this.lastMouseFluid);
 		var cellScale = 32;
-		this.fluid = new GPUFluid(Math.round(this.window.width * this.fluidScale),Math.round(this.window.height * this.fluidScale),cellScale,this.fluidIterations);
-		this.fluid.set_updateDyeShader(this.updateDyeShader);
-		this.fluid.set_applyForcesShader(this.mouseForceShader);
+		fluid = new GPUFluid(Math.round(this.window.width * this.fluidScale),Math.round(this.window.height * this.fluidScale),cellScale,this.fluidIterations);
+		fluid.set_updateDyeShader(this.updateDyeShader);
+		fluid.set_applyForcesShader(this.mouseForceShader);
 		this.particles = new GPUParticles(this.particleCount);
-		this.particles.stepParticlesShader.flowScale.data.x = 1 / (this.fluid.cellSize * this.fluid.aspectRatio);
-		this.particles.stepParticlesShader.flowScale.data.y = 1 / this.fluid.cellSize;
+		this.particles.stepParticlesShader.flowScale.data.x = 1 / (fluid.cellSize * fluid.aspectRatio);
+		this.particles.stepParticlesShader.flowScale.data.y = 1 / fluid.cellSize;
 		this.particles.stepParticlesShader.dragCoefficient.set_data(1);
 		this.lastTime = haxe_Timer.stamp();
 	}
@@ -1045,11 +1051,11 @@ Main.prototype = $extend(snow_App.prototype,{
 		dt = 0.016;
 		this.updateDyeShader.isMouseDown.set(this.isMouseDown && this.lastMousePointKnown);
 		this.mouseForceShader.isMouseDown.set(this.isMouseDown && this.lastMousePointKnown);
-		this.fluid.step(dt);
-		this.particles.stepParticlesShader.flowVelocityField.set_data(this.fluid.velocityRenderTarget.readFromTexture);
+		fluid.step(dt);
+		this.particles.stepParticlesShader.flowVelocityField.set_data(fluid.velocityRenderTarget.readFromTexture);
 		if(this.renderParticlesEnabled) this.particles.step(dt);
-		this.lastMouse.set(this.mouse.x,this.mouse.y);
-		this.lastMouseFluid.set((this.mouse.x / this.window.width * 2 - 1) * this.fluid.aspectRatio,(this.window.height - this.mouse.y) / this.window.height * 2 - 1);
+		this.lastMouse.set(mouse.x,mouse.y);
+		this.lastMouseFluid.set((mouse.x / this.window.width * 2 - 1) * fluid.aspectRatio,(this.window.height - mouse.y) / this.window.height * 2 - 1);
 		this.lastMousePointKnown = this.mousePointKnown;
 	}
 	,render: function(w) {
@@ -1069,7 +1075,7 @@ Main.prototype = $extend(snow_App.prototype,{
 		}
 		if(this.renderFluidEnabled) {
 			snow_modules_opengl_web_GL.current_context.bindBuffer(34962,this.textureQuad);
-			this.screenTextureShader.texture.set_data(this.fluid.dyeRenderTarget.readFromTexture);
+			this.screenTextureShader.texture.set_data(fluid.dyeRenderTarget.readFromTexture);
 			this.screenTextureShader.activate(true,true);
 			snow_modules_opengl_web_GL.current_context.drawArrays(5,0,4);
 			this.screenTextureShader.deactivate();
@@ -1095,7 +1101,7 @@ Main.prototype = $extend(snow_App.prototype,{
 		var h;
 		w = Math.round(this.window.width * this.fluidScale);
 		h = Math.round(this.window.height * this.fluidScale);
-		if(w != this.fluid.width || h != this.fluid.height) this.fluid.resize(w,h);
+		if(w != fluid.width || h != fluid.height) fluid.resize(w,h);
 		w = Math.round(this.window.width * this.offScreenScale);
 		h = Math.round(this.window.height * this.offScreenScale);
 		if(w != this.offScreenTarget.width || h != this.offScreenTarget.height) this.offScreenTarget.resize(w,h);
@@ -1150,7 +1156,7 @@ Main.prototype = $extend(snow_App.prototype,{
 	}
 	,set_fluidIterations: function(v) {
 		this.fluidIterations = v;
-		if(this.fluid != null) this.fluid.solverIterations = v;
+		if(fluid != null) fluid.solverIterations = v;
 		return v;
 	}
 	,lowerQualityRequired: function(magnitude) {
@@ -1181,7 +1187,7 @@ Main.prototype = $extend(snow_App.prototype,{
 	}
 	,reset: function() {
 		this.particles.reset();
-		this.fluid.clear();
+		fluid.clear();
 	}
 	,windowToClipSpaceX: function(x) {
 		return x / this.window.width * 2 - 1;
@@ -1196,13 +1202,16 @@ Main.prototype = $extend(snow_App.prototype,{
 		this.isMouseDown = false;
 	}
 	,onmousemove: function(x,y,xrel,yrel,_,_1) {
-		this.mouse.set(x,y);
-		this.mouseFluid.set((x / this.window.width * 2 - 1) * this.fluid.aspectRatio,(this.window.height - y) / this.window.height * 2 - 1);
+		this.isMouseDown = true;
+		//console.log(x + " = " + y);
+		mouse.set(x,y);
+		mouseFluid.set((x / this.window.width * 2 - 1) * fluid.aspectRatio,(this.window.height - y) / this.window.height * 2 - 1);
+		console.log(this.window.width + " = " + this.window.height);
 		this.mousePointKnown = true;
 	}
 	,updateLastMouse: function() {
 		this.lastMouse.set(this.mouse.x,this.mouse.y);
-		this.lastMouseFluid.set((this.mouse.x / this.window.width * 2 - 1) * this.fluid.aspectRatio,(this.window.height - this.mouse.y) / this.window.height * 2 - 1);
+		this.lastMouseFluid.set((this.mouse.x / this.window.width * 2 - 1) * fluid.aspectRatio,(this.window.height - this.mouse.y) / this.window.height * 2 - 1);
 		this.lastMousePointKnown = this.mousePointKnown;
 	}
 	,onkeydown: function(keyCode,_,_1,_2,_3,_4) {
@@ -1227,7 +1236,7 @@ Main.prototype = $extend(snow_App.prototype,{
 			this.renderFluidEnabled = !this.renderFluidEnabled;
 			break;
 		case 115:
-			this.fluid.clear();
+			fluid.clear();
 			break;
 		case snow_system_input_Keycodes.from_scan(snow_system_input_Scancodes.lshift):
 			this.lshiftDown = false;
