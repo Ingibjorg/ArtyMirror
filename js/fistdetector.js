@@ -62,8 +62,8 @@ function startFistDetection() {
 
                     /* Prepare the detector once the video dimensions are known: */
                     if (!detector) {
-                        var width = ~~(140 * video.videoWidth / video.videoHeight);
-                        var height = 140;
+                        var width = ~~(80 * video.videoWidth / video.videoHeight);
+                        var height = 80;
                         detector = new objectdetect.detector(width, height, 1.1, objectdetect.handfist);
                     }
 
