@@ -1,15 +1,11 @@
 function startFistDetection() {
-    var options = {
-        running: true,
-        numStreams: 400,
-        distort: 0,
-        strength: Math.PI,
-        scaler: 0.05,
-        step: 2
-    };
+    document.getElementById("unsuccEnding").style.visibility = "hidden";
+    document.getElementById("unsuccEnding").style.display = "none";
+    $("#layer2").hide();
+    document.getElementById("finish").style.visibility = "hidden";
+    document.getElementById("finish").style.display = "none";
 
-    start(options);
-
+    var paused = false;
     function getScripts(urls, callback) {
         function getScript(url, callback) {
             var script = document.createElement('script'),
@@ -45,9 +41,8 @@ function startFistDetection() {
 
         function () {
             var canvas = $('<canvas style="position: fixed; z-index: 1001;top: 10px; right: 10px; opacity: 0.9">').get(0),
-                context = canvas.getContext('2d'),
-                video = document.createElement('video'),
-                fist_pos_old,
+                context = canvas.getContext('2d');
+            var video = document.createElement('video'),
                 detector;
 
             document.getElementsByTagName('body')[0].appendChild(canvas);
@@ -55,7 +50,9 @@ function startFistDetection() {
             video.src = camvideo.src;
             compatibility.requestAnimationFrame(play);
 
-            var timeSinceLastMovement;
+            var date = new Date();
+            var timeSinceLastMovement = date.getTime();
+            var fluidCanvas = $("#window1").get(0);
 
             function play() {
                 compatibility.requestAnimationFrame(play);
@@ -90,20 +87,6 @@ function startFistDetection() {
                         for (var i = coords.length - 1; i >= 0; --i)
                             if (coords[i][4] > coord[4]) coord = coords[i];
 
-                        /* Scroll window: */
-                        var fist_pos = [coord[0] + coord[2] / 2, coord[1] + coord[3] / 2];
-                        if (fist_pos_old) {
-                            var dx = (fist_pos[0] - fist_pos_old[0]) / video.videoWidth,
-                                dy = (fist_pos[1] - fist_pos_old[1]) / video.videoHeight;
-                        } else fist_pos_old = fist_pos;
-
-                        if (options.step + Math.abs(dx) <= 10.0) {
-                            options.step += 0.2;
-                        }
-
-                        var date = new Date();
-                        timeSinceLastMovement = date.getTime();
-
                         /* Draw coordinates on video overlay: */
                         context.beginPath();
                         context.lineWidth = '2';
@@ -114,20 +97,35 @@ function startFistDetection() {
                             coord[2] / video.videoWidth * canvas.clientWidth,
                             coord[3] / video.videoHeight * canvas.clientHeight);
                         context.stroke();
+
+                        /* Rescale coordinates from detector to canvas coordinate space: */
+                        coord[0] = coord[0] / video.videoWidth * fluidCanvas.clientWidth;
+                        coord[1] = coord[1] / video.videoHeight * fluidCanvas.clientHeight;
+                        coord[2] = coord[2] / video.videoWidth * fluidCanvas.clientWidth;
+                        coord[3] = coord[3] / video.videoHeight * fluidCanvas.clientHeight;
+
+                        var x = (coord[0] + coord[0] + coord[2]) / 2;
+                        var y = (coord[2] + coord[2] + coord[3]) / 2;
+
+                        mouse.set(x,y);
+                        mouseFluid.set((x / fluidCanvas.width * 2 - 1) * fluid.aspectRatio,(fluidCanvas.height - y) / fluidCanvas.height * 2 - 1);
                     } else {
-                        fist_pos_old = null;
                         var date = new Date();
                         var currentTime = date.getTime();
                         var diff = currentTime - timeSinceLastMovement;
 
-                        if (!isNaN(diff) && diff >= 5000) {
+                        if (!isNaN(diff) && diff >= 4000 && !paused) {
+                            paused = true;
+                            clearInterval(counter);
                             video.pause();
-                            $('canvas').hide();
+                            $("canvas").hide();
                             document.getElementById("unsuccEnding").style.visibility = "visible";
                             document.getElementById("unsuccEnding").style.display = "block";
                             $("#layer2").show();
                             document.getElementById("finish").style.visibility = "visible";
                             document.getElementById("finish").style.display = "block";
+                            fistDetectorStarted = false;
+                            animate();
                         }
                     }
                 }

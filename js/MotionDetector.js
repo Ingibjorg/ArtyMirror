@@ -159,9 +159,10 @@ function checkAreas() {
         var average = Math.round(sum / (2 * countPixels));
         if (average > 50) {
             if (buttons[b].name == "tannbursti" && !fistDetectorStarted) {
-                console.log("Button " + buttons[b].name + " triggered."); // do stuff
                 fistDetectorStarted = true;
                 $("#layer2").hide();
+
+                $.getScript("js/GPUFluid.js", null);
                 startFistDetection();
             }
         }
