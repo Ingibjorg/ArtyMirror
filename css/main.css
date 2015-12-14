@@ -22,6 +22,26 @@ body {
   position: absolute;
 }
 
+#day {
+  color: white;
+  position: absolute;
+  right: 0px;
+}
+
+#date {
+  color: white;
+  position: absolute;
+  right: 0px;
+  top: 20px;
+}
+
+#clock {
+  color: white;
+  position: absolute;
+  right: 0px;
+  top: 40px;
+}
+
 p
 {
   color: white;
