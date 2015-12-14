@@ -109,23 +109,30 @@ function startFistDetection() {
 
                         mouse.set(x,y);
                         mouseFluid.set((x / fluidCanvas.width * 2 - 1) * fluid.aspectRatio,(fluidCanvas.height - y) / fluidCanvas.height * 2 - 1);
+                        date = new Date();
+                        timeSinceLastMovement = date.getTime();
                     } else {
                         var date = new Date();
                         var currentTime = date.getTime();
                         var diff = currentTime - timeSinceLastMovement;
 
                         if (!isNaN(diff) && diff >= 4000 && !paused) {
+                            console.log("Stopping");
                             paused = true;
-                            clearInterval(counter);
-                            video.pause();
-                            $("canvas").hide();
-                            document.getElementById("unsuccEnding").style.visibility = "visible";
-                            document.getElementById("unsuccEnding").style.display = "block";
-                            $("#layer2").show();
-                            document.getElementById("finish").style.visibility = "visible";
-                            document.getElementById("finish").style.display = "block";
-                            fistDetectorStarted = false;
-                            animate();
+                            console.log("Counter: ", counter);
+                            if(counter != null) {
+                              console.log("Clearing counter interval fist: ", counter);
+                              clearInterval(counter);
+                              video.pause();
+                              $("canvas").hide();
+                              document.getElementById("unsuccEnding").style.visibility = "visible";
+                              document.getElementById("unsuccEnding").style.display = "block";
+                              $("#layer2").show();
+                              document.getElementById("finish").style.visibility = "visible";
+                              document.getElementById("finish").style.display = "block";
+                              fistDetectorStarted = false;
+                              animate();
+                            }
                         }
                     }
                 }

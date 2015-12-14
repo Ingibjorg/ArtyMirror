@@ -40,8 +40,9 @@ p
     padding-left: 150px;
 }
 
-.timer {
+#timer {
+  position: absolute;
   padding: 20px;
   margin: 20px;
-
+  z-index: 200;
 }
