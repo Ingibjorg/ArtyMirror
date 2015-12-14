@@ -105,3 +105,10 @@ body {
     height: 100%;
     display: block;
 }
+
+video, canvas {
+    margin-left: 100px;
+    margin-top: 35px;
+    position: absolute;
+    z-index: 120;
+}

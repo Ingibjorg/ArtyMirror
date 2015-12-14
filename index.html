@@ -8,6 +8,7 @@
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
     <script src="bower_components/progressbar.js/dist/progressbar.min.js"></script>
+    <script src="bower_components/tracking/build/tracking-min.js"></script>
     <script src="js/clock.js"></script>
 </head>
 <body>
@@ -16,7 +17,6 @@
   <p id="instructions-text">WAVE HERE <br> TO START <br> BRUSHING!</p>
   <p id="finish-text">WAVE HERE <br> TO FINISH <br> BRUSHING!</p>
 </span>
-
 
 <p id="day"></p>
 <p id="date"></p>
@@ -38,10 +38,15 @@
 <img id="succEnding" class="center fit" src="images/thumbup.gif" alt="winner" style="display:none; visibility:hidden;"/>
 <img id="unsuccEnding" class="center fit"  src="images/thumbdown.gif" alt="looser" style="display:none; visibility:hidden;"/>
 
+<video id="video" width="600" height="450" preload autoplay loop muted controls></video>
+<canvas id="canvas" width="600" height="450"></canvas>
+
 <script src="js/RequestAnimationFrame.js"></script>
 <script src="js/howler.js"></script>
 <script src="js/MotionDetector.js"></script>
 <script src="js/fistdetector.js"></script>
+<script src="js/color_camera_gui.js"></script>
+<script src="js/DAT.GUI.min.js"></script>
 <script type="text/javascript" language="JavaScript">
     function set_body_height() { // set body height = window height
         $('body').height($(window).height());

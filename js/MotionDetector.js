@@ -151,7 +151,7 @@ function checkAreas() {
                 $("#layer2").hide();
                 $("#instructions").hide();
 
-                $.getScript("js/GPUFluid.js", null);
+                //$.getScript("js/GPUFluid.js", null);
                 startFistDetection();
 
                 if (!circle) {
@@ -159,7 +159,7 @@ function checkAreas() {
                     circle = new ProgressBar.Circle('#progress', {
                         strokeWidth: 15,
                         color: '#FFFFFF',
-                        duration: 30000,
+                        duration: 300000,
                         easing: 'easeInOut'
                     });
                 }
