@@ -113,7 +113,6 @@ function startFistDetection() {
 
                         if (!isNaN(diff) && diff >= 4000 && !paused) {
                             paused = true;
-                            clearInterval(counter);
                             video.pause();
                             $("canvas").hide();
                             document.getElementById("unsuccEnding").style.visibility = "visible";
