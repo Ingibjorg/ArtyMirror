@@ -6,6 +6,7 @@ function startFistDetection() {
     document.getElementById("finish").style.display = "none";
 
     var paused = false;
+
     function getScripts(urls, callback) {
         function getScript(url, callback) {
             var script = document.createElement('script'),
@@ -99,10 +100,12 @@ function startFistDetection() {
 
                         var x = coord[0] / video.videoWidth * fluidCanvas.clientWidth;
                         var y = coord[1] / video.videoHeight * fluidCanvas.clientHeight;
-
+                        
                         mouse.set(x,y);
                         mouseFluid.set((x / fluidCanvas.width * 2 - 1) * fluid.aspectRatio,(fluidCanvas.height - y) / fluidCanvas.height * 2 - 1);
                         mousePointKnown = true;
+                        date = new Date();
+                        timeSinceLastMovement = date.getTime();
                     } else {
                         var date = new Date();
                         var currentTime = date.getTime();
@@ -120,6 +123,7 @@ function startFistDetection() {
                             document.getElementById("finish").style.display = "block";
                             fistDetectorStarted = false;
                             animate();
+                            circle.stop();
                         }
                     }
                 }
