@@ -167,8 +167,10 @@ function checkAreas() {
                 circle.animate(1, function() {
                     $("#progress").hide();
                     $("canvas").hide();
-                    document.getElementById("succEnding").style.visibility = "visible";
-                    document.getElementById("succEnding").style.display = "block";
+                    document.getElementById("succ-image").style.visibility = "visible";
+                    document.getElementById("succ-image").style.display = "block";
+                    document.getElementById("succ-text").style.visibility = "visible";
+                    document.getElementById("succ-text").style.display = "block";
                     circle = null;
                 });
             }

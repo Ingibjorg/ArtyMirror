@@ -1,9 +1,9 @@
 function startFistDetection() {
-    document.getElementById("unsuccEnding").style.visibility = "hidden";
-    document.getElementById("unsuccEnding").style.display = "none";
+  document.getElementById("unsucc-image").style.visibility = "hidden";
+  document.getElementById("unsucc-image").style.display = "none";
+  document.getElementById("unsucc-text").style.visibility = "hidden";
+  document.getElementById("unsucc-text").style.display = "none";
     $("#layer2").hide();
-    document.getElementById("finish").style.visibility = "hidden";
-    document.getElementById("finish").style.display = "none";
 
     var paused = false;
 
@@ -111,12 +111,14 @@ function startFistDetection() {
                         var currentTime = date.getTime();
                         var diff = currentTime - timeSinceLastMovement;
 
-                        if (!isNaN(diff) && diff >= 4000 && !paused) {
+                        if (!isNaN(diff) && diff >= 4000 && !paused && circle != null) {
                             paused = true;
                             video.pause();
                             $("canvas").hide();
-                            document.getElementById("unsuccEnding").style.visibility = "visible";
-                            document.getElementById("unsuccEnding").style.display = "block";
+                            document.getElementById("unsucc-image").style.visibility = "visible";
+                            document.getElementById("unsucc-image").style.display = "block";
+                            document.getElementById("unsucc-text").style.visibility = "visible";
+                            document.getElementById("unsucc-text").style.display = "block";
                             $("#layer2").show();
                             $("#instructions").show();
                             document.getElementById("instructions-text").style.visibility = "hidden";

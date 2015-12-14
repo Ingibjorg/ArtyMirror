@@ -29,14 +29,17 @@
             style="z-index: 1; position: absolute; left:0px; top:0px;"></canvas>
     <canvas id="layer2" width="320" height="240"
             style="z-index: 2; position: absolute; left:0px; top:0px; opacity:0.5;"></canvas>
-    <p id="finish" style="display:none; visibility:hidden;">Finish</p>
 </div>
 <canvas id="blendCanvas" style="display: none; position: relative; left: 320px; top: 240px; width: 320px; height: 240px;"></canvas>
 
 <div class="progress" id="progress"></div>
 
-<img id="succEnding" class="center fit" src="images/thumbup.gif" alt="winner" style="display:none; visibility:hidden;"/>
-<img id="unsuccEnding" class="center fit"  src="images/thumbdown.gif" alt="looser" style="display:none; visibility:hidden;"/>
+<span id="ending">
+  <img id="succ-image" class="center fit" src="images/thumbup.gif" alt="winner"/>
+  <p id="succ-text">YAY! NICE <br> TOOTHBRUSHING!</p>
+  <img id="unsucc-image" class="center fit"  src="images/thumbdown.gif" alt="looser"/>
+  <p id="unsucc-text">YOU DIDN'T BRUSH <br> FOR LONG ENOUGH!</p>
+</span>
 
 <script src="js/RequestAnimationFrame.js"></script>
 <script src="js/howler.js"></script>

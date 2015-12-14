@@ -30,13 +30,16 @@ body {
     background-color: #000000;
 }
 
+img {
+  height:300px;
+  width:300px;
+}
+
 #videoCanvas {
     visibility: hidden;
 }
 
 #brush-wave {
-  height:300px;
-  width:300px;
   position: absolute;
 }
 
@@ -48,6 +51,7 @@ body {
 
 #finish-text {
   visibility: hidden;
+  display: none;
   padding-left: 350px;
   padding-top: 100px;
   font-size: 200%;
@@ -79,9 +83,24 @@ body {
   font-family: 'akkurat-mono';
 }
 
-#finish {
-  padding-left: 120px;
-  padding-top: 50px;
+#succ-image {
+  visibility: hidden;
+  display: none;
+}
+
+#unsucc-image {
+  visibility: hidden;
+  display: none;
+}
+
+#succ-text {
+  visibility: hidden;
+  display: none;
+}
+
+#unsucc-text {
+  visibility: hidden;
+  display: none;
 }
 
 .fit { /* set relative picture size */
