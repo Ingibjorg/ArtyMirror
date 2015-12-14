@@ -1205,7 +1205,7 @@ Main.prototype = $extend(snow_App.prototype,{
 	}
 	,onmousemove: function(x,y,xrel,yrel,_,_1) {
 		this.isMouseDown = true;
-		console.log(x + " = " + y);
+		//console.log(x + " = " + y);
 		mouse.set(x,y);
 		mouseFluid.set((x / this.window.width * 2 - 1) * fluid.aspectRatio,(this.window.height - y) / this.window.height * 2 - 1);
 		mousePointKnown = true;
