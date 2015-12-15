@@ -1,24 +1,17 @@
 @font-face {
-    font-family: 'akkurat-mono';
-    src: url(../fonts/Akkurat-Mono.pfb);
-    src: local('☺'),
-    url('Akkurat-Mono.pfm') format('pfm');
-    font-weight: normal;
-    font-style: normal;
+    font-family: akkurat-mono;
+    src: url('../fonts/Akkurat-Mono.otf');
 }
 
 @font-face {
-    font-family: 'akkurat-regular';
-    src: url(../fonts/AkkRg_Pro_1.otf);
-    src: local('☺'),
-    font-weight: normal;
-    font-style: normal;
+    font-family: akkurat-regular;
+    src: url('../fonts/AkkRg_Pro_1.otf');
 }
 
 p {
-  color: white;
-  font-size: 250%;
-  font-family: 'akkurat-regular';
+    color: white;
+    font-size: 250%;
+    font-family: akkurat-regular, serif;
 }
 
 body {
@@ -26,8 +19,8 @@ body {
 }
 
 img {
-  height:300px;
-  width:300px;
+    height: 300px;
+    width: 300px;
 }
 
 #videoCanvas {
@@ -35,45 +28,45 @@ img {
 }
 
 #brush-wave {
-  position: absolute;
+    position: absolute;
 }
 
 #instructions-text {
-  padding-left: 350px;
-  padding-top: 100px;
-  font-size: 200%;
+    padding-left: 350px;
+    padding-top: 100px;
+    font-size: 200%;
 }
 
 #finish-text {
-  padding-left: 350px;
-  padding-top: 100px;
-  font-size: 200%;
+    padding-left: 350px;
+    padding-top: 100px;
+    font-size: 200%;
 }
 
 #day {
-  top: 50px;
-  color: white;
-  position: absolute;
-  right: 150px;
+    top: 50px;
+    color: white;
+    position: absolute;
+    right: 150px;
 }
 
 #date {
-  color: white;
-  position: absolute;
-  right: 70px;
-  top: 100px;
-  border-style: solid;
-  padding: 15px 20px;
-  font-family: 'akkurat-mono';
+    color: white;
+    position: absolute;
+    right: 70px;
+    top: 100px;
+    border-style: solid;
+    padding: 15px 20px;
+    font-family: akkurat-mono, serif;
 }
 
 #clock {
-  color: white;
-  position: absolute;
-  right: 70px;
-  top: 190px;
-  font-size: 350%;
-  font-family: 'akkurat-mono';
+    color: white;
+    position: absolute;
+    right: 70px;
+    top: 190px;
+    font-size: 350%;
+    font-family: akkurat-mono, serif;
 }
 
 .fit { /* set relative picture size */
