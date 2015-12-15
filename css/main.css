@@ -21,13 +21,13 @@ p {
   font-family: 'akkurat-regular';
 }
 
-* {
-    padding: 0;
-    margin: 0;
-}
-
 body {
     background-color: #000000;
+}
+
+img {
+  height:300px;
+  width:300px;
 }
 
 #videoCanvas {
@@ -35,8 +35,6 @@ body {
 }
 
 #brush-wave {
-  height:300px;
-  width:300px;
   position: absolute;
 }
 
@@ -47,7 +45,6 @@ body {
 }
 
 #finish-text {
-  visibility: hidden;
   padding-left: 350px;
   padding-top: 100px;
   font-size: 200%;
@@ -77,11 +74,6 @@ body {
   top: 190px;
   font-size: 350%;
   font-family: 'akkurat-mono';
-}
-
-#finish {
-  padding-left: 120px;
-  padding-top: 50px;
 }
 
 .fit { /* set relative picture size */

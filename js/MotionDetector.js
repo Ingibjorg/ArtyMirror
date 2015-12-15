@@ -67,6 +67,13 @@ button1.src = "images/wave_gif.gif";
 var buttonData1 = {name: "tannbursti", image: button1, x: 320 - 120 - 200, y: 10, w: 300, h: 300};
 buttons.push(buttonData1);
 
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
 function animate() {
     requestAnimationFrame(animate);
     render();
@@ -126,9 +133,6 @@ function threshold(value) {
     return (value > 0x15) ? 0xFF : 0;
 }
 
-var fistDetectorStarted = false;
-var circle;
-
 // check if white region from blend overlaps area of interest (e.g. triggers)
 function checkAreas() {
     for (var b = 0; b < buttons.length; b++) {
@@ -145,33 +149,10 @@ function checkAreas() {
         }
         // calculate an average between of the color values of the note area [0-255]
         var average = Math.round(sum / (2 * countPixels));
-        if (average > 50) {
-            if (buttons[b].name == "tannbursti" && !fistDetectorStarted) {
-                fistDetectorStarted = true;
-                $("#layer2").hide();
-                $("#instructions").hide();
-
-                //$.getScript("js/GPUFluid.js", null);
-                startFistDetection();
-
-                if (!circle) {
-                    $("#progress").show();
-                    circle = new ProgressBar.Circle('#progress', {
-                        strokeWidth: 15,
-                        color: '#FFFFFF',
-                        duration: 300000,
-                        easing: 'easeInOut'
-                    });
-                }
-
-                circle.animate(1, function() {
-                    $("#progress").hide();
-                    $("canvas").hide();
-                    document.getElementById("succEnding").style.visibility = "visible";
-                    document.getElementById("succEnding").style.display = "block";
-                    circle = null;
-                });
-            }
+        if (average > 50 && buttons[b].name == "tannbursti") {
+            var value = getParameterByName('value');
+            if (value) window.location.href = '/fluid.html?value=' + value;
+            else window.location.href = '/fluid.html';
         }
     }
 }
