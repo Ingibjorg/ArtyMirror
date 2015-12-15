@@ -1,17 +1,14 @@
-var duration = 30000;
+var duration = 10000;
 var value = getParameterByName('value');
-
-console.log("Here: " + value);
 
 var circle = new ProgressBar.Circle('#progress', {
     strokeWidth: 15,
     color: '#FFFFFF',
     duration: duration,
-    easing: 'easeInOut'
-
+    easing: 'linear'
 });
 
-if (!value) {
+if (value) {
     circle.set(value);
 }
 
@@ -143,7 +140,7 @@ getScripts([
                     var diff = currentTime - timeSinceLastMovement;
 
                     if (!isNaN(diff) && diff >= 4000) {
-                        window.location.href = '/loser.html&value=' + circle.value();
+                        window.location.href = '/loser.html?value=' + circle.value();
                     }
                 }
             }

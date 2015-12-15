@@ -67,6 +67,13 @@ button1.src = "images/wave_gif.gif";
 var buttonData1 = {name: "tannbursti", image: button1, x: 320 - 120 - 200, y: 10, w: 300, h: 300};
 buttons.push(buttonData1);
 
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
 function animate() {
     requestAnimationFrame(animate);
     render();
@@ -143,7 +150,9 @@ function checkAreas() {
         // calculate an average between of the color values of the note area [0-255]
         var average = Math.round(sum / (2 * countPixels));
         if (average > 50 && buttons[b].name == "tannbursti") {
-            window.location.href = '/fluid.html';
+            var value = getParameterByName('value');
+            if (value) window.location.href = '/fluid.html?value=' + value;
+            else window.location.href = '/fluid.html';
         }
     }
 }
