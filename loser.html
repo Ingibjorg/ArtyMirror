@@ -2,19 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ArtyMirror</title>
+    <title>Title</title>
+
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-
-<span id="instructions">
-  <img id="brush-wave" src="images/wave_gif.gif" alt="Start"/>
-  <p>WAVE HERE <br> TO START <br> BRUSHING!</p>
-</span>
-
-<p id="day"></p>
-<p id="date"></p>
-<p id="clock"></p>
 
 <video id="monitor" autoplay style="display: none; width: 320px; height: 240px;"></video>
 
@@ -26,11 +18,17 @@
 </div>
 <canvas id="blendCanvas" style="display: none; position: relative; left: 320px; top: 240px; width: 320px; height: 240px;"></canvas>
 
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="js/clock.js"></script>
+
+<span id="instructions">
+  <img id="brush-wave" src="images/wave_gif.gif" alt="Start"/>
+  <p id="finish-text">WAVE HERE <br> TO FINISH <br> BRUSHING!</p>
+</span>
+
+<img id="unsucc-image" class="center fit" src="images/thumbdown.gif" alt="looser"/>
+<p id="unsucc-text">YOU DIDN'T BRUSH <br> FOR LONG ENOUGH!</p>
+
 <script src="js/RequestAnimationFrame.js"></script>
 <script src="js/howler.js"></script>
 <script src="js/MotionDetector.js"></script>
-
 </body>
 </html>

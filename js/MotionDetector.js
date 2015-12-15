@@ -126,9 +126,6 @@ function threshold(value) {
     return (value > 0x15) ? 0xFF : 0;
 }
 
-var fistDetectorStarted = false;
-var circle;
-
 // check if white region from blend overlaps area of interest (e.g. triggers)
 function checkAreas() {
     for (var b = 0; b < buttons.length; b++) {
@@ -145,35 +142,8 @@ function checkAreas() {
         }
         // calculate an average between of the color values of the note area [0-255]
         var average = Math.round(sum / (2 * countPixels));
-        if (average > 50) {
-            if (buttons[b].name == "tannbursti" && !fistDetectorStarted) {
-                fistDetectorStarted = true;
-                $("#layer2").hide();
-                $("#instructions").hide();
-
-                $.getScript("js/GPUFluid.js", null);
-                startFistDetection();
-
-                if (!circle) {
-                    $("#progress").show();
-                    circle = new ProgressBar.Circle('#progress', {
-                        strokeWidth: 15,
-                        color: '#FFFFFF',
-                        duration: 30000,
-                        easing: 'easeInOut'
-                    });
-                }
-
-                circle.animate(1, function() {
-                    $("#progress").hide();
-                    $("canvas").hide();
-                    document.getElementById("succ-image").style.visibility = "visible";
-                    document.getElementById("succ-image").style.display = "block";
-                    document.getElementById("succ-text").style.visibility = "visible";
-                    document.getElementById("succ-text").style.display = "block";
-                    circle = null;
-                });
-            }
+        if (average > 50 && buttons[b].name == "tannbursti") {
+            window.location.href = '/fluid.html';
         }
     }
 }
