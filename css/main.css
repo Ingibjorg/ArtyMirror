@@ -24,7 +24,11 @@ img {
 }
 
 #videoCanvas {
-    visibility: hidden;
+    /*z-index: 300;*/
+    /*position: absolute;*/
+    /*left:0px;*/
+    /*top:0px;*/
+    /*visibility: hidden;*/
 }
 
 #brush-wave {

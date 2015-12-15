@@ -7,24 +7,22 @@
 </head>
 <body>
 
-<span id="instructions">
-  <img id="brush-wave" src="images/wave_gif.gif" alt="Start"/>
-  <p id="instructions-text">WAVE HERE <br> TO START <br> BRUSHING!</p>
-</span>
+<!--<span id="instructions">-->
+  <!--<img id="brush-wave" src="images/wave_gif.gif" alt="Start"/>-->
+  <!--<p id="instructions-text">WAVE HERE <br> TO START <br> BRUSHING!</p>-->
+<!--</span>-->
 
-<p id="day"></p>
-<p id="date"></p>
-<p id="clock"></p>
+<!--<p id="day"></p>-->
+<!--<p id="date"></p>-->
+<!--<p id="clock"></p>-->
 
-<video id="monitor" autoplay style="display: none; width: 320px; height: 240px;"></video>
 
-<div id="canvasLayers" width="320" height="240" style="position: relative; left: 0px; top: 0px;">
-    <canvas id="videoCanvas" width="320" height="240"
-            style="z-index: 1; position: absolute; left:0px; top:0px;"></canvas>
-    <canvas id="layer2" width="320" height="240"
-            style="z-index: 2; position: absolute; left:0px; top:0px; opacity:0.5;"></canvas>
-</div>
-<canvas id="blendCanvas" style="display: none; position: relative; left: 320px; top: 240px; width: 320px; height: 240px;"></canvas>
+<canvas id="videoCanvas" width="512" height="288"></canvas>
+
+<!--<div id="canvasLayers" width="512" height="288" style="position: relative; left: 0px; top: 0px;">-->
+    <!--<canvas id="videoCanvas" width="512" height="288"></canvas>-->
+<!--</div>-->
+<canvas id="blendCanvas" style="display: none; position: relative; width: 512px; height: 288px;"></canvas>
 
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="js/clock.js"></script>
