@@ -5,7 +5,7 @@ function getParameterByName(name) {
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-var timeout = setTimeout(redirectToLoser, 4000);
+var timeout = setTimeout(redirectToLoser, 6000);
 var circle;
 
 function redirectToLoser() {
@@ -13,7 +13,7 @@ function redirectToLoser() {
 }
 
 window.onload = function() {
-    var duration = 100000;
+    var duration = 20000;
     var value = getParameterByName('value');
 
     circle = new ProgressBar.Circle('#progress', {
