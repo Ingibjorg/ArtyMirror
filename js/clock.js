@@ -19,8 +19,8 @@ $(document).ready(function () {
 
     setInterval(function () {
         // Create a newDate() object and extract the hours of the current time on the visitor's
-        var hours = new Date().getHours();
-        var minutes = new Date().getMinutes();
+        hours = new Date().getHours();
+        minutes = new Date().getMinutes();
         // Add a leading zero to the value and output hours and minutes
         $("#clock").html(( hours < 10 ? "0" : "" ) + hours + ":" + ( minutes < 10 ? "0" : "" ) + minutes);
     }, 1000);
