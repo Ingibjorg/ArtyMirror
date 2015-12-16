@@ -16,21 +16,17 @@
 <p id="date"></p>
 <p id="clock"></p>
 
-<video id="monitor" autoplay style="display: none; width: 320px; height: 240px;"></video>
-
-<div id="canvasLayers" width="320" height="240" style="position: relative; left: 0px; top: 0px;">
-    <canvas id="videoCanvas" width="320" height="240"
-            style="z-index: 1; position: absolute; left:0px; top:0px;"></canvas>
-    <canvas id="layer2" width="320" height="240"
-            style="z-index: 2; position: absolute; left:0px; top:0px; opacity:0.5;"></canvas>
+<div class="demo-frame">
+    <div class="demo-container">
+        <video id="video" width="600" height="450" style="visibility: hidden" preload autoplay loop muted controls></video>
+        <canvas id="canvas" width="600" height="450" style="visibility: hidden"></canvas>
+    </div>
 </div>
-<canvas id="blendCanvas" style="display: none; position: relative; left: 320px; top: 240px; width: 320px; height: 240px;"></canvas>
 
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="js/clock.js"></script>
-<script src="js/RequestAnimationFrame.js"></script>
-<script src="js/howler.js"></script>
-<script src="js/MotionDetector.js"></script>
+<script src="bower_components/tracking/build/tracking-min.js"></script>
+<script src="js/colortrackerfluid.js"></script>
 
 </body>
 </html>
