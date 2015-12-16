@@ -79,6 +79,28 @@ img {
     margin: auto;
 }
 
+#unsucc-image {
+  margin-left: 320px;
+  margin-top: 90px;
+  position: absolute;
+}
+
+#unsucc-text {
+  margin-left: 620px;
+  margin-top: 200px;
+}
+
+#succ-image {
+  margin-left: 320px;
+  margin-top: -140px;
+  position: absolute;
+}
+
+#succ-text {
+  margin-left: 620px;
+  margin-top: 430px;
+}
+
 .progress {
     position: absolute;
     height: 100px;
