@@ -51,8 +51,13 @@ window.onload = function() {
 
             x = fluidCanvas.width - x;
 
-            mouse.set(x, y);
-            mouseFluid.set((x / fluidCanvas.width * 2 - 1) * fluid.aspectRatio, (fluidCanvas.height - y) / fluidCanvas.height * 2 - 1);
+            //mouse.set(x, y);
+            //mouseFluid.set((x / fluidCanvas.width * 2 - 1) * fluid.aspectRatio, (fluidCanvas.height - y) / fluidCanvas.height * 2 - 1);
+
+            // Handle no rotation in camera
+            mouse.set(y, x);
+            mouseFluid.set((fluidCanvas.height - y) / fluidCanvas.height * 2 - 1, (x / fluidCanvas.width * 2 - 1) * fluid.aspectRatio);
+
             mousePointKnown = true;
         });
     });
