@@ -83,7 +83,7 @@ img {
     position: absolute;
     height: 100px;
     z-index: 200;
-    margin: 10px;
+    margin: 30px 20px;
 }
 
 .progress > svg {
