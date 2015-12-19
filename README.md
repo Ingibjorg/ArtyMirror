@@ -6,11 +6,11 @@ This is a 3 week project for the course Living Technology at RU in collaboration
  
 `npm install -g bower`
 
-3. Get the code
+2. Get the code
 
 `git clone git@github.com:Ingibjorg/ArtyMirror.git`  
 `cd ArtyMirror`
 
-4. Run the web site
+3. Run the web site
 
 `python -m SimpleHTTPServer 8000`
