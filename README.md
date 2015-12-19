@@ -6,6 +6,7 @@ This is a 3 week project for the course Living Technology at RU in collaboration
 `npm install -g bower`
 
 3. Get the code
+
 `git clone git@github.com:Ingibjorg/ArtyMirror.git`  
 `cd ArtyMirror`
 
